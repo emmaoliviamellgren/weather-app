@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@300&family=Rethink+Sans&display=swap');
+
+:root {
+    --bg-color: rgba(47, 79, 79, 0.509);
+    --card: rgba(255, 255, 255, 0.752);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card {
+    background-color: var(--card);
+    height: 40vh;
+    width: calc(100vw - 400px);
+    min-width: 300px;
+    max-width: 600px;
+    padding: 2.5rem;
+    margin: 2rem;
+}
+
+#search-bar {
+    border: none;
+    padding: 0.8em 2em;
+    border-radius: 2rem;
+}
+
+
+h1 {
+    font-family: 'Kalnia', serif;
+}
+
+p {
+    font-family: 'Rethink Sans', sans-serif;
+}
