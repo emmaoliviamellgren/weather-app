@@ -1,3 +1,8 @@
+const inputValue = document.getElementById('search-bar')
+const searchBox = document.querySelector('.search-box')
+const searchButton = document.querySelector('button')
+const body = document.querySelector('body')
+
 const weather = {
     API_KEY: '550f2bc9f0aa46b5945111518231412',
     fetchWeather: function(city) {
@@ -27,8 +32,34 @@ const weather = {
     }
     }
 
-const inputValue = document.getElementById('search-bar')
-const searchBox = document.querySelector('.search-box')
-const searchButton = document.querySelector('button')
+// Changing body background img depending on forecast
 
+let backgroundImg = body.classList.add('')
+
+switch (backgroundImg) {
+    case 'cloudy':
+        body.classList.add('CLOUD IMG')
+    break;
+    case 'overcast':
+        body.classList.add('CLOUD IMG')
+    break;
+    case 'rainy':
+        body.classList.add('RAINY IMG')
+    break;
+    case 'thunder':
+        body.classList.add('THUNDER IMG')
+    break;
+    case 'sunny':
+        body.classList.add('SUNNY IMG')
+    break;
+    case 'mist':
+        body.classList.add('MIST IMG')
+    break;
+    case 'snowy':
+        body.classList.add('SNOW IMG')
+    break;
+    default: // Clear conditions
+        body.classList.add('CLEAR IMG')
+    break;
+}
 
