@@ -16,7 +16,7 @@ body {
 
 .card {
     background-color: var(--card);
-    height: 40vh;
+    height: min-content;
     width: calc(100vw - 400px);
     min-width: 300px;
     max-width: 600px;
