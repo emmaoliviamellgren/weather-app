@@ -1,10 +1,8 @@
-const inputValue = document.getElementById('search-bar')
-const searchBox = document.querySelector('.search-box')
+const searchBar = document.getElementById('search-bar')
 const searchButton = document.querySelector('button')
 const body = document.querySelector('body')
 
 const weather = {
-    API_KEY: '550f2bc9f0aa46b5945111518231412',
     fetchWeather: function(city) {
         fetch(
             'http://api.weatherapi.com/v1/'
@@ -14,8 +12,40 @@ const weather = {
             + city
     )
         .then(response => response.json())
-        .then(data => this.displayWeather(data));  // data is sent to function displayWeather
+        .then(data => {
+            
+            // Changing body background img depending on forecast
+            switch (data.current.condition.text) {
+                default: // Clear conditions
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1540308990836-5a7b1df6dc00?q=80&w=4912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+                break;
+                case 'Cloudy':
+                case 'Partly cloudy':
+                case 'Overcast':
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1524555259-3e4f9092f97b?q=80&w=2057&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+                break;
+                case 'Light rain':
+                case 'Light drizzle':
+                case 'Rain':
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1559047838-d2ceb47b6ce9?q=80&w=3135&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+                break;
+                case 'Thunder':
+                    body.style.backgroundImage = "url('THUNDER IMG')"
+                break;
+                case 'Sunny':
+                    body.style.backgroundImage = "url('SUNNY IMG')"
+                break;
+                case 'Mist':
+                    body.style.backgroundImage = "url('MIST IMG')"
+                break;
+                case 'Snowy':
+                    body.style.backgroundImage = "url('SNOW IMG')"
+                break;
+            }
+            this.displayWeather(data) // data is sent to function displayWeather
+            }); 
     },
+
     displayWeather: function(data) { // value of const {} will be taken from objects and stored in a variable
         const {name} = data.location;
         const {text, icon} = data.current.condition;
@@ -23,43 +53,25 @@ const weather = {
         const {wind_kph} = data.current;
         console.log(name, text, icon, temp_c, humidity, wind_kph)
 
-        document.querySelector('.city').textContent = 'Weather in ' + name;
+        document.querySelector('.city-name').textContent = name;
         document.querySelector('.degrees').textContent = Math.floor(temp_c) + '°C';
         document.querySelector('.forecast-icon').src = 'http:' + icon;
         document.querySelector('.forecast').innerHTML = text;
         document.querySelector('.humidity').textContent = 'Humidity: ' + humidity + '%';
         document.querySelector('.wind-speed').textContent = 'Wind speed: ' + wind_kph + 'km/h';
+    },
+
+    search: function() {
+        this.fetchWeather(searchBar.value);
     }
     }
 
-// Changing body background img depending on forecast
-
-let backgroundImg = body.classList.add('')
-
-switch (backgroundImg) {
-    case 'cloudy':
-        body.classList.add('CLOUD IMG')
-    break;
-    case 'overcast':
-        body.classList.add('CLOUD IMG')
-    break;
-    case 'rainy':
-        body.classList.add('RAINY IMG')
-    break;
-    case 'thunder':
-        body.classList.add('THUNDER IMG')
-    break;
-    case 'sunny':
-        body.classList.add('SUNNY IMG')
-    break;
-    case 'mist':
-        body.classList.add('MIST IMG')
-    break;
-    case 'snowy':
-        body.classList.add('SNOW IMG')
-    break;
-    default: // Clear conditions
-        body.classList.add('CLEAR IMG')
-    break;
-}
-
+    searchButton.addEventListener('click', function() {
+    weather.search();
+    if(searchBar.value === '') {
+        return
+    }
+    // else {
+    //     prompt('Please input a valid location')
+    // }
+})
