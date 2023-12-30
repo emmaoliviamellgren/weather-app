@@ -51,7 +51,7 @@ const weather = {
         const {text, icon} = data.current.condition;
         const {temp_c, humidity} = data.current;
         const {wind_kph} = data.current;
-        console.log(name, text, icon, temp_c, humidity, wind_kph)
+        // console.log(name, text, icon, temp_c, humidity, wind_kph)
 
         document.querySelector('.city-name').textContent = name;
         document.querySelector('.degrees').textContent = Math.floor(temp_c) + '°C';
@@ -62,16 +62,16 @@ const weather = {
     },
 
     search: function() {
-        this.fetchWeather(searchBar.value);
+        if (typeof searchBar.value !== 'string' || searchBar.value.trim() === '') {
+            alert('Please input a valid location');
+            console.log('You must input a valid location.')
+        } else {
+            this.fetchWeather(searchBar.value);
+            searchBar.value = '';
+        }
     }
     }
 
-    searchButton.addEventListener('click', function() {
+searchButton.addEventListener('click', function() {
     weather.search();
-    if(searchBar.value === '') {
-        return
-    }
-    // else {
-    //     prompt('Please input a valid location')
-    // }
-})
+});
