@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@300&family=Rethink+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400;0,800;1,600&display=swap');
 
 :root {
     --card: rgb(37, 36, 36);
@@ -44,14 +44,16 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.forecast-icon {
-    aspect-ratio: 1/1;
+    text-transform: uppercase;
 }
 
 .weather-details {
     gap:2em;
+}
+
+.forecast {
+    letter-spacing: .5em;
+    font-weight: 800;
 }
 
 .city {
@@ -59,7 +61,7 @@ button {
     font-size: 1.3em;
     align-items: center;
     justify-content: center;
-    margin-top: 2em;
+    margin: 2em;
 }
 
 .city-name {
@@ -77,6 +79,7 @@ button {
 
 #search-bar {
     border: none; 
+    width: 50%;
     padding: .9em 2em;
     border-radius: 2rem;
     box-shadow: 2px 3px 0px 1px rgba(60, 51, 109, 0.496);
@@ -92,10 +95,16 @@ button {
     font-family: 'Rethink Sans', sans-serif;
 }
 
+button:target, button:active {
+    background-color: rgb(60, 51, 109);
+    color: white;
+}
+
 h1 {
     font-size: 5em;
     margin: .5em 0 -0.2em 0;
     text-align: center;
+    font-weight: 400;
 }
 
 p {

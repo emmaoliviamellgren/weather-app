@@ -26,20 +26,23 @@ const weather = {
                 break;
                 case 'Light rain':
                 case 'Light drizzle':
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1503429134808-fdf0cd4e1bfa?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+                break;
                 case 'Rain':
                     body.style.backgroundImage = "url('https://images.unsplash.com/photo-1559047838-d2ceb47b6ce9?q=80&w=3135&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
                 case 'Thunder':
-                    body.style.backgroundImage = "url('THUNDER IMG')"
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1429552077091-836152271555?q=80&w=2088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
                 case 'Sunny':
-                    body.style.backgroundImage = "url('SUNNY IMG')"
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1597316342034-39cb9003f5bf?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
                 case 'Mist':
-                    body.style.backgroundImage = "url('MIST IMG')"
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
+                case 'Light snow':
                 case 'Snowy':
-                    body.style.backgroundImage = "url('SNOW IMG')"
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1521827877890-e62d1e4b80f5?q=80&w=2753&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
             }
             this.displayWeather(data) // data is sent to function displayWeather
@@ -48,23 +51,22 @@ const weather = {
 
     displayWeather: function(data) { // value of const {} will be taken from objects and stored in a variable
         const {name} = data.location;
-        const {text, icon} = data.current.condition;
+        const {text} = data.current.condition;
         const {temp_c, humidity} = data.current;
         const {wind_kph} = data.current;
-        // console.log(name, text, icon, temp_c, humidity, wind_kph)
 
         document.querySelector('.city-name').textContent = name;
         document.querySelector('.degrees').textContent = Math.floor(temp_c) + '°C';
-        document.querySelector('.forecast-icon').src = 'http:' + icon;
         document.querySelector('.forecast').innerHTML = text;
         document.querySelector('.humidity').textContent = 'Humidity: ' + humidity + '%';
         document.querySelector('.wind-speed').textContent = 'Wind speed: ' + wind_kph + 'km/h';
     },
 
     search: function() {
-        if (typeof searchBar.value !== 'string' || searchBar.value.trim() === '') {
+        if (!isNaN(searchBar.value) || searchBar.value.trim() === '') {
             alert('Please input a valid location');
             console.log('You must input a valid location.')
+            searchBar.value = '';
         } else {
             this.fetchWeather(searchBar.value);
             searchBar.value = '';
