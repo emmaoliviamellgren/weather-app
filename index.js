@@ -55,7 +55,7 @@ const weather = {
                 break;
                 case 'Light snow':
                 case 'Snowy':
-                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1521827877890-e62d1e4b80f5?q=80&w=2753&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+                    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1516035645781-9f126e774e9e?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
             }
             this.displayWeather(data) // data is sent to function displayWeather
