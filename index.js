@@ -1,3 +1,5 @@
+
+
 const searchBar = document.getElementById('search-bar')
 const searchButton = document.querySelector('button')
 const body = document.querySelector('body')
@@ -64,16 +66,27 @@ const weather = {
 
     search: function() {
         if (!isNaN(searchBar.value) || searchBar.value.trim() === '') {
-            alert('Please input a valid location');
-            console.log('You must input a valid location.')
+            document.querySelector('.invalid').style.display = 'inline-block';
+            searchBar.classList.add('search-bar--invalid')
+            console.error('You must input a valid location.')
             searchBar.value = '';
         } else {
+            searchBar.classList.remove('search-bar--invalid')
+            document.querySelector('.invalid').style.display = 'none';
             this.fetchWeather(searchBar.value);
             searchBar.value = '';
         }
     }
     }
 
+//Submit on search button click
 searchButton.addEventListener('click', function() {
     weather.search();
 });
+
+// Submit on 'enter' key press
+function checkSubmit(e) {
+    if (e && e.keyCode == 13) {
+        weather.search();
+    }
+}

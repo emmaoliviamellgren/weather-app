@@ -11,8 +11,9 @@
     <div class="card">
 
         <div class="search-box">
-            <input type="text" name="search" id="search-bar" placeholder="Search location">
+            <input type="text" name="search" id="search-bar" placeholder="Search location" onkeyup="return checkSubmit(event)">
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="invalid"><p>Please input a valid location</p></div>
         </div>
 
         <h1 class="degrees">30 &#176;C</h1>
