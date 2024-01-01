@@ -1,4 +1,5 @@
-
+// TO DO -
+// CHANGE DEFAULT STATE OF WEB APP
 
 const searchBar = document.getElementById('search-bar')
 const searchButton = document.querySelector('button')
@@ -13,9 +14,19 @@ const weather = {
             + '&q='
             + city
     )
-        .then(response => response.json())
-        .then(data => {
+        .then(response => {
+
+            if(!response.ok) {
+                document.querySelector('.invalid').style.display = 'inline-block';
+                searchBar.classList.add('search-bar--invalid')
+                console.error('Something went wrong. Error: ', response.status)
+                searchBar.value = ''; 
+            }
+            return response.json();
+        })
             
+        .then(data => {
+
             // Changing body background img depending on forecast
             switch (data.current.condition.text) {
                 default: // Clear conditions
@@ -65,7 +76,8 @@ const weather = {
     },
 
     search: function() {
-        if (!isNaN(searchBar.value) || searchBar.value.trim() === '') {
+        if (!isNaN(searchBar.value) ||
+        searchBar.value.trim() === '') {
             document.querySelector('.invalid').style.display = 'inline-block';
             searchBar.classList.add('search-bar--invalid')
             console.error('You must input a valid location.')
