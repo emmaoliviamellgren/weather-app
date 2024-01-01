@@ -19,18 +19,23 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
     font-family: 'Rethink Sans', sans-serif;
 }
 
 .card {
-    height: min-content;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    flex-direction: column;
     width: calc(100vw - 400px);
     min-width: 300px;
     max-width: 600px;
     padding: 2.5rem;
-    margin: 2rem;
+    margin: 0 2rem 0 2rem;
     background-clip: padding-box;
     box-shadow: 0 7px 20px 5px #00000088;
     backdrop-filter: blur(10px);
@@ -47,7 +52,12 @@ button {
     cursor: pointer;
 }
 
-.weather-details, .forecast-container {
+/* Default state of weather container is display: none. After inputting a location, display: block is triggered instead. */
+.weather-container {
+    display: none;
+}
+
+.weather-details, .forecast {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +68,7 @@ button {
     gap:2em;
 }
 
-.forecast {
+.forecast p {
     letter-spacing: .5em;
     font-weight: 800;
 }
@@ -72,7 +82,6 @@ button {
 }
 
 .city-name {
-    background-color: black;
     padding: .2em .5em;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 100;
@@ -88,8 +97,12 @@ input {
     border: none;
 }
 
+.search-box {
+    width: 600px;
+}
+
 #search-bar {
-    width: 50%;
+    width: 300px;
     padding: .9em 2em;
     border-radius: 2rem;
     box-shadow: 2px 3px 0px 1px rgba(60, 51, 109, 0.496);
@@ -147,9 +160,17 @@ button:target, button:active {
 /* Some media queries.. */
 @media screen and (max-width:768px) {
 
+    .search-box {
+        width: 250px;
+    }
+
+    #search-bar {
+        width: 120px;
+    }
+
     .invalid {
         width: 70%;
-        padding: 0.6em 0 0.6em 0;
+        padding: 0.6em 0.5em 0.6em 0.5em;
         margin-bottom: 1.2em;
     }
 

@@ -4,6 +4,7 @@
 const searchBar = document.getElementById('search-bar')
 const searchButton = document.querySelector('button')
 const body = document.querySelector('body')
+const card = document.querySelector('.card')
 
 const weather = {
     fetchWeather: function(city) {
@@ -54,6 +55,7 @@ const weather = {
                     body.style.backgroundImage = "url('https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
                 case 'Light snow':
+                case 'Light sleet':
                 case 'Snowy':
                     body.style.backgroundImage = "url('https://images.unsplash.com/photo-1516035645781-9f126e774e9e?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
                 break;
@@ -68,16 +70,17 @@ const weather = {
         const {temp_c, humidity} = data.current;
         const {wind_kph} = data.current;
 
-        document.querySelector('.city-name').textContent = name;
+        document.querySelector('.city-name').textContent =  name;
+        document.querySelector('.city-name').style.backgroundColor = 'black';
+        document.querySelector('.city-paragraph').textContent = 'Weather in: ';
         document.querySelector('.degrees').textContent = Math.floor(temp_c) + '°C';
-        document.querySelector('.forecast').innerHTML = text;
+        document.querySelector('.forecast p').textContent = text;
         document.querySelector('.humidity').textContent = 'Humidity: ' + humidity + '%';
         document.querySelector('.wind-speed').textContent = 'Wind speed: ' + wind_kph + 'km/h';
     },
 
     search: function() {
-        if (!isNaN(searchBar.value) ||
-        searchBar.value.trim() === '') {
+        if (!isNaN(searchBar.value) || searchBar.value.trim() === '') {
             document.querySelector('.invalid').style.display = 'inline-block';
             searchBar.classList.add('search-bar--invalid')
             console.error('You must input a valid location.')
@@ -93,12 +96,24 @@ const weather = {
 
 //Submit on search button click
 searchButton.addEventListener('click', function() {
-    weather.search();
+    weatherInfo()
 });
 
 // Submit on 'enter' key press
 function checkSubmit(e) {
     if (e && e.keyCode == 13) {
-        weather.search();
+    weatherInfo()
+}
+}
+
+const weatherInfo = () => {
+    if (!searchBar.classList.contains('search-bar--invalid')) {
+        card.style.height = 'min-content';
+        document.querySelector('.weather-container').style.display = 'block';
     }
+    weather.search()
+}
+
+function checkIfValid() {
+    // Create function to see if input field value is valid
 }
