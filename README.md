@@ -34,5 +34,5 @@ This weather app is a simple and user-friendly web application that provides rea
 
 ## Acknowledgments
 
--   Weather data provided by OpenWeatherAPI.
--   Forecast images provided by Unsplash.
+-   Weather data provided by [WeatherAPI.com](https://weatherapi.com).
+-   Forecast images provided by [Unsplash](https://unsplash.com).
