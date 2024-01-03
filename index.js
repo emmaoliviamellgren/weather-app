@@ -1,6 +1,3 @@
-// TO DO -
-// CHANGE DEFAULT STATE OF WEB APP
-
 const searchBar = document.getElementById('search-bar')
 const searchButton = document.querySelector('button')
 const body = document.querySelector('body')

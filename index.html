@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather App</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+    </head>
 
-<body>
+    <body>
+        <div class="card">
+            <div class="search-box">
+                <input type="text" name="search" id="search-bar" placeholder="Search location" onkeyup="return checkSubmit(event)" />
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="invalid"><p>Please input a valid location</p></div>
+            </div>
 
-    <div class="card">
+            <div class="weather-container">
+                <h1 class="degrees"></h1>
+                <div class="forecast">
+                    <p></p>
+                </div>
 
-        <div class="search-box">
+                <div class="city">
+                    <span class="city-paragraph"></span>
+                    <span class="city-name"></span>
+                </div>
 
-            <input type="text" name="search" id="search-bar" placeholder="Search location" onkeyup="return checkSubmit(event)">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            <div class="invalid"><p>Please input a valid location</p></div>
-
+                <div class="weather-details">
+                    <p class="humidity"></p>
+                    <p class="wind-speed"></p>
+                </div>
+            </div>
         </div>
 
-        <div class="weather-container">
-
-            <h1 class="degrees"></h1>
-            <div class="forecast">
-                <p></p>
-            </div>
-
-            <div class="city">
-                <span class="city-paragraph"></span>
-                <span class="city-name"></span>
-            </div>
-
-            <div class="weather-details">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-            </div>
-            
-        </div>
-
-    </div>
-
-    <script src="index.js"></script>
-</body>
+        <script src="index.js"></script>
+    </body>
 </html>
-
