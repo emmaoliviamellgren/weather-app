@@ -1,6 +1,6 @@
 ## Overview
 
-This weather app is a simple and user-friendly web application that provides real-time weather information for any location around the world. Users can easily check the current weather conditions, temperature, humidity and wind speed.
+A simple and user-friendly weather web application that provides real-time weather information for any location around the world. Users can easily check the current weather conditions, temperature, humidity and wind speed.
 
 ## Features
 
