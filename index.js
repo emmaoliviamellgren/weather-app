@@ -78,39 +78,39 @@ const weather = {
 
     search: function() {
         if (!isNaN(searchBar.value) || searchBar.value.trim() === '') {
-            document.querySelector('.invalid').style.display = 'inline-block';
-            searchBar.classList.add('search-bar--invalid')
-            console.error('You must input a valid location.')
-            searchBar.value = '';
+            errorMsgInvalidLocation()
         } else {
             searchBar.classList.remove('search-bar--invalid')
             document.querySelector('.invalid').style.display = 'none';
             this.fetchWeather(searchBar.value);
             searchBar.value = '';
+            card.style.height = 'min-content';
+            document.querySelector('.weather-container').style.display = 'block';
+            
+                //If location is invalid and weather card is open, reposition error message
+                if(!isNaN(searchBar.value) || searchBar.value.trim() === '' && document.querySelector('.weather-container').style.display === 'block') {
+                    document.querySelector('.invalid').style.top = '105px';
+                }
         }
     }
     }
 
+//Error message - location is invalid
+const errorMsgInvalidLocation = () => {
+    document.querySelector('.invalid').style.display = 'inline-block';
+    searchBar.classList.add('search-bar--invalid')
+    console.error('You must input a valid location.')
+    searchBar.value = '';
+}
+
 //Submit on search button click
 searchButton.addEventListener('click', function() {
-    weatherInfo()
+    weather.search()
 });
 
 // Submit on 'enter' key press
 function checkSubmit(e) {
     if (e && e.keyCode == 13) {
-    weatherInfo()
+        weather.search()
 }
-}
-
-const weatherInfo = () => {
-    if (!searchBar.classList.contains('search-bar--invalid')) {
-        card.style.height = 'min-content';
-        document.querySelector('.weather-container').style.display = 'block';
-    }
-    weather.search()
-}
-
-function checkIfValid() {
-    // Create function to see if input field value is valid
 }
