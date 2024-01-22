@@ -6,7 +6,7 @@ const card = document.querySelector('.card')
 const weather = {
     fetchWeather: function(city) {
         fetch(
-            'http://api.weatherapi.com/v1/'
+            'https://api.weatherapi.com/v1/'
             + 'current.json'
             + '?key=550f2bc9f0aa46b5945111518231412'
             + '&q='
